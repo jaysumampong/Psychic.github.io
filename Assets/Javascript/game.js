@@ -2,6 +2,7 @@ let wins = 0;
 let losses = 0;
 let guesses = 10;
 let array = [];
+let letters = /^[A-Za-z]+$/;
 let letterChoices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','z'];
 // DOM node references
 let userWins = document.getElementById("user-wins");
@@ -24,17 +25,19 @@ function game(){
 document.onkeyup = function(event) {
     let userGuess = event.key;
     // check for only A-Z character keys (keycode)
-    if (array.includes(userGuess)) {
-        return;
+    if (userGuess.match(letters)) {
+        console.log("match working");
+        //return;
+
     }
-    
-    array.push(userGuess);
+
+    //array.push(userGuess);
 
     console.log(array);
     if (userGuess === computerChoice){
         wins++;
         userWins.innerText = wins;
-        // reset game here but don't clear wins/losses
+       
     }
 
     if (userGuess !== computerChoice) {
@@ -47,6 +50,7 @@ document.onkeyup = function(event) {
         losses++;
         array = [];
         guesses = 10; 
+        userLosses.innerText = losses;
     }
 
     // loop through the array and append to recorded guesses
@@ -61,11 +65,7 @@ document.onkeyup = function(event) {
         recordedGuesses.appendChild(spanTag);
     }
 
-    //userWins.textContent = "wins: " + wins;
-    //console.log("wins")
-    //userLosses.textContent = "losses: " + losses;
-    //guessesLeft.textContent = "Guesses Left: " + guesses;
-    //recordedGuesses.textContent = "Your guesses so far: " + guesses;
+
 
     
 };
