@@ -26,9 +26,7 @@ document.onkeyup = function(event) {
     let userGuess = event.key;
     // check for only A-Z character keys (keycode)
     if (userGuess.match(letters)) {
-        console.log("match working");
         //return;
-
     }
 
     //array.push(userGuess);
@@ -36,14 +34,16 @@ document.onkeyup = function(event) {
     console.log(array);
     if (userGuess === computerChoice){
         wins++;
+        guesses = 10;
+        guessesLeft.innerText = guesses;
         userWins.innerText = wins;
-       
     }
 
     if (userGuess !== computerChoice) {
         guesses--;
         console.log({guesses});
         guessesLeft.innerText = guesses;
+    
     }
 
     if (guesses <= 0){
